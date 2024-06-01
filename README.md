@@ -8,6 +8,11 @@ Welcome to the **Ecosystem Dynamics Simulation** project! This project is a Scal
 - [Installation](#installation)
 - [Usage](#usage)
 - [Project Structure](#project-structure)
+- [Ecosystem Dynamics Workings](#ecosystem-dynamics-workings)
+  - [Predator-Prey Dynamics](#predator-prey-dynamics)
+  - [Competition](#competition)
+  - [Mutualism](#mutualism)
+  - [Environment Dynamics](#environment-dynamics)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -115,6 +120,59 @@ ecosystem-dynamics-simulation/
 - **Visualization.scala**: Sets up the graphical visualization using ScalaFX.
 - **EcosystemSimulationTest.scala**: Contains unit tests for the different models.
 
+## Ecosystem Dynamics Workings
+
+### Predator-Prey Dynamics
+
+The predator-prey dynamics are modeled using the Lotka-Volterra equations. This model describes how the population sizes of two species (predators and prey) interact over time. The equations are:
+
+- Prey population change: `dPrey/dt = α * Prey - β * Prey * Predator`
+- Predator population change: `dPredator/dt = δ * Prey * Predator - γ * Predator`
+
+Where:
+- `α` is the natural growth rate of prey in the absence of predators.
+- `β` is the predation rate coefficient.
+- `δ` is the reproduction rate of predators per prey eaten.
+- `γ` is the natural death rate of predators in the absence of prey.
+
+This model helps simulate the oscillatory nature of predator-prey relationships.
+
+### Competition
+
+In this model, we simulate competition between two species for the same resources. The competition is modeled using the Lotka-Volterra competition equations:
+
+- Species A population change: `dA/dt = rA * A * (1 - (A + αB) / KA)`
+- Species B population change: `dB/dt = rB * B * (1 - (B + βA) / KB)`
+
+Where:
+- `rA` and `rB` are the intrinsic growth rates of species A and B.
+- `KA` and `KB` are the carrying capacities of species A and B.
+- `α` and `β` are competition coefficients.
+
+This model captures how species A and B compete for limited resources, affecting their growth rates and population sizes.
+
+### Mutualism
+
+Mutualism models the interaction where two species benefit from each other. The equations used are:
+
+- Species A population change: `dA/dt = rA * A + cA * A * B`
+- Species B population change: `dB/dt = rB * B + cB * A * B`
+
+Where:
+- `rA` and `rB` are the growth rates of species A and B in the absence of mutualistic interactions.
+- `cA` and `cB` are the mutualistic interaction coefficients.
+
+This model shows how mutualistic relationships can enhance the growth rates of both species involved.
+
+### Environment Dynamics
+
+The environment in this simulation includes resources and climate, which can affect the populations. The environment dynamics are simplified:
+
+- Resources change over time based on a sinusoidal function to simulate seasonal changes.
+- Climate alternates between "summer" and "winter" based on the time step, simulating seasonal changes.
+
+These environmental factors can influence the growth rates and interactions of species within the ecosystem.
+
 ## Contributing
 
 Contributions are welcome! If you'd like to contribute, please follow these steps:
@@ -132,6 +190,4 @@ Please make sure to update tests as appropriate.
 
 This project is licensed under the GNU General Public License v3.0. See the [LICENSE](LICENSE) file for details.
 
----
-
-Happy coding! 😊🌱
+## Happy coding! 😊🌱
